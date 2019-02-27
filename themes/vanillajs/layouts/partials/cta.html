@@ -1,0 +1,5 @@
+{{- $data := getJSON $.Site.Params.api -}}
+{{- $ctas := index $data "ctas" -}}
+{{- if isset $ctas "vanilla-js-list" -}}
+{{ index $ctas "vanilla-js-list" | safeHTML }}
+{{- end -}}

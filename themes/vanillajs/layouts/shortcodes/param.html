@@ -1,0 +1,3 @@
+{{- if isset $.Site.Params (.Get "id") -}}
+{{ index $.Site.Params (.Get "id") }}
+{{- end -}}

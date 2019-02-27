@@ -1,0 +1,46 @@
+{{ partial "header.html" . }}
+
+{{ partial "content-page.html" . }}
+
+{{ partial "cta.html" . }}
+
+{{ $paginate := .Paginate .Pages }}
+{{ range $paginate.Pages }}
+
+		{{ if false }}
+		{{ if ne ( $.Scratch.Get "pubDate" ) ( .PublishDate.Format "200601" ) }}
+			<h2>{{ .PublishDate.Format "January 2006" }}</h2>
+		{{ end }}
+		{{ $.Scratch.Set "pubDate" ( .PublishDate.Format "200601" ) }}
+		{{ end }}
+
+		<article>
+
+			<header>
+				<h2 class="h3 margin-bottom-small">
+					{{ .Title }}
+				</h2>
+			</header>
+
+			<p class="margin-bottom-small">{{ .RawContent | markdownify }}</p>
+
+			<ul class="list-inline list-inline-spaced">
+				<li><a href="{{ .Params.site }}" aria-label="Visit {{ .Title }}">Visit</a></li>
+				{{- if ne .Params.details "" -}}<a href="{{ .Params.details }}" aria-label="More info about {{ .Title }}">More Info</a>{{- end -}}
+			</ul>
+
+		</article>
+
+{{ end }}
+
+{{ if gt $paginate.TotalPages 1  }}
+	<nav class="text-center">
+		<p class="padding-top-large margin-bottom-small">
+			{{ if $paginate.HasPrev }}<a href="{{ $paginate.Prev.URL }}">&larr; Newer</a>{{ end }}
+			{{ if and $paginate.HasPrev $paginate.HasNext }}&nbsp;/&nbsp;{{ end }}
+			{{ if $paginate.HasNext }}<a href="{{ $paginate.Next.URL }}">Older &rarr;</a>{{ end }}
+		</p>
+	</nav>
+{{ end }}
+
+{{ partial "footer.html" . }}

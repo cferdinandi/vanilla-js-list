@@ -1,0 +1,18 @@
+<h2 class="h3">Latest Episodes</h2>
+
+<ul class="list-unstyled margin-bottom-medium">
+{{- range $index, $episode := getJSON $.Site.Params.episodes -}}
+	{{- $title := split $episode.title " - " -}}
+	{{- $minutes := math.Floor (div (div $episode.duration 1000) 60) -}}
+	{{- $seconds := math.Floor (mod (div $episode.duration 1000) 60) -}}
+
+	<li class="margin-bottom-small">
+		<strong class="margin-right">{{ index $title 0 }}</strong>
+		<a class="link-no-underline" href="{{ $.Site.Params.soundcloud }}{{ $episode.permalink }}">{{ index $title 1 }}</a>
+		<span class="text-small text-muted">({{ $minutes }}:{{ printf "%02d" (int $seconds) }})</span>
+	</li>
+
+{{- end -}}
+</ul>
+
+<p><em>Listen to full series on <a href="{{ $.Site.Params.itunes }}">iTunes</a> or <a href="{{ $.Site.Params.soundcloud }}">SoundCloud</a>.</em></p>

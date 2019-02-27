@@ -10,8 +10,8 @@
 
 	// Variables
 	$secret = getenv('GH_DEPLOY_SECRET');
-	$repo_dir = '/srv/users/serverpilot/apps/vanillajspodcast/build';
-	$web_root_dir = '/srv/users/serverpilot/apps/vanillajspodcast/public';
+	$repo_dir = '/srv/users/serverpilot/apps/vanillajslist/build';
+	$web_root_dir = '/srv/users/serverpilot/apps/vanillajslist/public';
 	$rendered_dir = '/public';
 	$hugo_path = '/usr/local/bin/hugo';
 

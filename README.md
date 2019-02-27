@@ -1,5 +1,5 @@
-# Vanilla JS Podcast
+# Vanilla JS List
 
-A show about JavaScript for people who hate the complexity of modern front‑end web development.
+A growing list of organizations that use vanilla JS.
 
-**[Check out the show.](https://vanillajspodcast.com)**
+**[Check out the show.](https://vanillajslist.com)**

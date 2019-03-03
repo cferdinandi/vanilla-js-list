@@ -48,28 +48,11 @@
 
 	};
 
-	// Parse data from GitHub hook payload
-	$data = json_decode($_POST['payload']);
 
-	$commit_message;
-	if (empty($data->commits)){
-		// When merging and pushing to GitHub, the commits array will be empty.
-		// In this case there is no way to know what branch was pushed to, so we will do an update.
-		$commit_message .= 'true';
-	} else {
-		foreach ($data->commits as $commit) {
-			$commit_message .= $commit->message;
-		}
-	}
+	// Do a git checkout, run Hugo, and copy files to public directory
+	exec('cd ' . $repo_dir . ' && git fetch --all && git reset --hard origin/master');
+	exec('cd ' . $repo_dir . ' && ' . $hugo_path);
+	exec('cd ' . $repo_dir . ' && cp -r ' . $repo_dir . $rendered_dir . '/. ' . $web_root_dir);
 
-	if (!empty($commit_message)) {
-
-		// Do a git checkout, run Hugo, and copy files to public directory
-		exec('cd ' . $repo_dir . ' && git fetch --all && git reset --hard origin/master');
-		exec('cd ' . $repo_dir . ' && ' . $hugo_path);
-		exec('cd ' . $repo_dir . ' && cp -r ' . $repo_dir . $rendered_dir . '/. ' . $web_root_dir);
-
-		// Log the deployment
-		file_put_contents('deploy.log', date('m/d/Y h:i:s a') . " Deployed branch: " .  $branch . " Commit: " . $commit_message . "\n", FILE_APPEND);
-
-	}
+	// Log the deployment
+	file_put_contents('deploy.log', date('m/d/Y h:i:s a') . ' Deployed' . "\n", FILE_APPEND);

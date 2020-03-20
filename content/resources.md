@@ -13,4 +13,4 @@ Let's make {{<year>}} the year that you master&nbsp;JavaScript! You can do this.
 
 {{<cta for="products">}}
 
-**Want more?** I also created a [vanilla JS learning roadmap](https://learnvanillajs.com), maintain the [Vanilla JS Toolkit](https://vanillajstoolkit.com), and host the [Vanilla JS Podcast](https://vanillajspodcast.com).
+**Want more?** I also maintain the [Vanilla JS Toolkit](https://vanillajstoolkit.com) and host the [Vanilla JS Podcast](https://vanillajspodcast.com). You can watch me code vanilla JS projects live at [Vanilla JS Prep School](https://vanillajsprepschool.com).
